@@ -2,6 +2,31 @@
 
 ## Project 
 
+```
+my_python_project/
+│
+├── my_package/
+│   ├── __init__.py
+│   ├── module1.py
+│   └── module2.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_module1.py
+│   └── test_module2.py
+│
+├── docs/
+│   └── documentation files
+│
+├── scripts/
+│   └── useful_scripts
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── setup.py
+```
+
 ```bash
 # Create and enter the project directory
 mkdir python-intro
@@ -35,6 +60,22 @@ git commit -m "Initial commit"
 ```
 
 ## Module
+
+```
+my_python_module/
+│
+├── my_module/
+│   ├── __init__.py
+│   └── module.py
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_module.py
+│
+├── README.md
+├── requirements.txt
+└── setup.py
+```
 
 ```bash
 # Create and enter the project directory
