@@ -1,5 +1,28 @@
 # edu-python-intro
 
+## Clone
+
+```bash
+# Change to the project directory
+cd path/to/cloned/project
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Install the project and its dependencies
+python setup.py install
+
+# Additional setup steps (if any, based on the project's README)
+
+# Your commands to run the project (based on the project's documentation)
+
+# Deactivate the virtual environment when done
+deactivate
+```
+
 ## Project 
 
 ```
@@ -25,6 +48,34 @@ my_python_project/
 ├── README.md
 ├── requirements.txt
 └── setup.py
+```
+
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name='your_package_name',  # Replace with your package name
+    version='1.0.0',  # Your package version
+    author='Your Name',  # Your name
+    author_email='your.email@example.com',  # Your email
+    description='A short description of your package',  # Short description
+    long_description=open('README.md').read(),  # Long description read from the README.md
+    long_description_content_type='text/markdown',  # Content type of the long description
+    url='http://your_package_website.com',  # Your package website
+    packages=find_packages(exclude=('tests', 'docs')),  # Automatically find all packages
+    install_requires=[
+        # List your project's dependencies here
+        # e.g., 'requests>=2.25.1',
+    ],
+    classifiers=[
+        # Classifiers help users find your project
+        # See https://pypi.org/classifiers/ for a list of valid classifiers
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+    ],
+    python_requires='>=3.6',  # Minimum version requirement of the package
+)
 ```
 
 ```bash
