@@ -26,6 +26,15 @@ deactivate
 ## Hello World command
 
 ```bash
+mkdir -p ~/.pip
+touch ~/.pip/pip.conf
+cat > ~/.pip/pip.conf << 'EOF'
+[install]
+install-option=--prefix=/usr/local
+EOF
+```
+
+```bash
 #!/bin/bash
 
 # Create project directory
