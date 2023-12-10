@@ -62,7 +62,7 @@ setup(
 EOF
 
 # Install the package (remove "-e" if you don't want editable mode)
-pip install -e .
+pip install .
 
 echo "Installation complete. You can now use the 'hello' command."
 ```
