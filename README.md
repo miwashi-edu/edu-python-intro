@@ -23,6 +23,51 @@ python setup.py install
 deactivate
 ```
 
+## Hello World command
+
+```bash
+#!/bin/bash
+
+# Create project directory
+mkdir hello_world_project
+cd hello_world_project
+
+# Create package directory
+mkdir hello_world
+touch hello_world/__init__.py
+
+# Create main.py with the Hello World program
+cat > hello_world/main.py << EOF
+def main():
+    print("Hello World")
+
+if __name__ == "__main__":
+    main()
+EOF
+
+# Create setup.py for installing the CLI tool
+cat > setup.py << EOF
+from setuptools import setup, find_packages
+
+setup(
+    name='hello_world',
+    version='0.1.0',
+    packages=find_packages(),
+    entry_points={
+        'console_scripts': [
+            'hello=hello_world.main:main',
+        ],
+    },
+)
+EOF
+
+# Install the package (remove "-e" if you don't want editable mode)
+pip install -e .
+
+echo "Installation complete. You can now use the 'hello' command."
+```
+
+
 ## Project 
 
 ```
