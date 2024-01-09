@@ -14,17 +14,17 @@ cd ~
 git clone https://github.com/miwashi-edu/pentest-toolbox.git # Change to the repository URL you copied in step 4
 cd pentest-toolbox. # Adjust to the name you chose in step 3.
 
-python -m venv venv
-source ./venv/bin/activate # Activate venv
+#python -m venv venv
+#source ./venv/bin/activate # Activate venv
 
 # Install the project and its dependencies
-python3 setup.py install
+#python3 setup.py install
 
 # Additional setup steps (if any, based on the project's README)
 
 # Your commands to run the project (based on the project's documentation)
 
-deactivate # Quit venv when you are ready
+#deactivate # Quit venv when you are ready
 ```
 
 ## Create project scaffold
