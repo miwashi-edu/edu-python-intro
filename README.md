@@ -12,7 +12,7 @@
 ```bash
 cd ~
 git clone https://github.com/miwashi-edu/pentest-toolbox.git # Change to the repository URL you copied in step 4
-cd pentest-toolbox. # Adjust to the name you chose in step 3.
+cd pentest-toolbox # Adjust to the name you chose in step 3.
 
 #python -m venv venv
 #source ./venv/bin/activate # Activate venv
