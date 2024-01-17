@@ -2,6 +2,19 @@
 
 > Now we start to add to our hello world module.
 
+## Create indata for piping
+
+```bash
+cd ws
+cd [repository-name]
+cat > ./names.txt << EOF
+Mikael
+Anna
+Eva
+Nisse
+EOF
+```
+
 ## Create hello command allowing piping
 
 ```bash
