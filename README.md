@@ -1,86 +1,36 @@
 # edu-python-intro
 
-> Pevious level we used setup.py to tell PIP how to package/install our command.
-> This time we will modernise the project and replace setup.py and requirements.txt with pyproject.toml
-> setup.py is as of 2023 entirely deprecated, and pyproject.toml should be used.
+> Now we start to add to our hello world module.
 
-## Prerequisites
-
-> 1. Go to github.com.
-> 2. Register if you aren't already.
-> 3. Create a repository (call it mytoolbox or pentest-toolbox or similar).
-> 4. Copy the repository URL
-
-
-## Clone
-
-```bash
-cd ~
-git clone https://github.com/[user]/[repository-name].git
-cd [repository-name]
-```
-
-## Create project scaffold
-
-```bash
-cd ws
-cd [repository-name]
-touch pyproject.toml
-mkdir tests
-touch tests/__init__.py
-mkdir docs
-mkdir scripts
-mkdir hello_world
-touch hello_world/__init__.py
-
-cat > hello_world/main.py << EOF
-def main():
-    print("Hello World")
-
-if __name__ == "__main__":
-    main()
-EOF
-git add .
-git commit -m "Initial commit"
-```
 
 ## Create pyproject.toml
 
 ```bash
 cd ws
 cd [repository-name]
-cat > pyproject.toml << EOF
+cat > ./hello_world/main.py << EOF
+# hello.py (Version 2)
 
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser(description='Prints a greeting message to the user.')
+    parser.add_argument('name', nargs='?', help='the name of the user')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0', help="show program's version number and exit")
+    
+    args = parser.parse_args()
+
+    if args.name:
+        print(f"Hello, {args.name}!")
+    else:
+        parser.print_usage()
+
+if __name__ == "__main__":
+    main()
 EOF
 ```
 
-
-
-### Result
-
-```
-~/ws/[repository-name]/
-│
-├── hello_world/
-│   ├── __init__.py
-│   ├── main.py
-│
-├── tests/
-│   ├── __init__.py
-│
-├── docs/
-│   └── documentation files
-│
-├── scripts/
-│   └── useful_scripts
-│
-├── .gitignore
-├── README.md
-├── LICENSE
-└── pyproject.toml
-```
-
-## Install the hello command
+## Update the hello command
 
 ```bash
 pip install . --user
