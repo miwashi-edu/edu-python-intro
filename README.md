@@ -50,7 +50,29 @@ git commit -m "Initial commit"
 cd ws
 cd [repository-name]
 cat > pyproject.toml << EOF
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "pentest-toolbox"
+version = "0.1.0"
+description = "Your package description here"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+license = {file = "LICENSE"}
+dependencies = [
+    "argparse",
+    "click",
+    "typer"
+]
+classifiers = [
+    # Classifiers
+]
+
+[project.entry-points.console_scripts]
+hello = "hello_world.main:main"
 EOF
 ```
 
