@@ -84,6 +84,6 @@ EOF
 
 ```bash
 pip install . --user
-# Om ni får: WARNING: The script hello is installed in '/home/devuser/.local/bin' which is not on PATH.
+#If you get: WARNING: The script hello is installed in '/home/devuser/.local/bin' which is not on PATH.
 export PATH=$PATH:/home/devuser/.local/bin
 ```
