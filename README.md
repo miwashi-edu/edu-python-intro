@@ -59,7 +59,7 @@ EOF
 ### Result
 
 ```
-~/ws/pentest-toolbox/
+~/ws/[repository-name]/
 │
 ├── hello_world/
 │   ├── __init__.py
