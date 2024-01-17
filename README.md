@@ -8,38 +8,27 @@
 cd ws
 cd [repository-name]
 cat > ./hello_world/main.py << EOF
-# hello.py (Revised Version 1)
+# hello.py (Revised Version 2)
 
+import argparse
 import sys
 
 def main():
-    if len(sys.argv) == 2:
-        if sys.argv[1] in ['-h', '-?', '-v']:
-            print_usage()
-        else:
-            name = sys.argv[1]
-            print(f"Hello, {name}!")
+    parser = argparse.ArgumentParser(description='Prints a greeting message to the user.')
+    parser.add_argument('name', nargs='?', type=str, help='the name of the user')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0', help="show program's version number and exit")
+    
+    args = parser.parse_args()
+
+    if args.name:
+        print(f"Hello, {args.name}!")
     elif not sys.stdin.isatty():
         for line in sys.stdin:
             name = line.strip()
             if name:
                 print(f"Hello, {name}!")
     else:
-        print_usage()
-
-def print_usage():
-    usage = """
-Usage: hello.py [OPTION]... [NAME]
-Prints a greeting message to the user. Can also read names from standard input.
-
-Arguments:
-  NAME        the name of the user (optional if using pipe)
-
-Options:
-  -h, -?      show this help message and exit
-  -v          show program's version number and exit
-    """
-    print(usage)
+        parser.print_usage()
 
 if __name__ == "__main__":
     main()
