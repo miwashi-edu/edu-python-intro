@@ -2,13 +2,13 @@
 
 > Now we start to add to our hello world module.
 
-## Create hello command using vanilla python
+## Create hello command allowing piping
 
 ```bash
 cd ws
 cd [repository-name]
 cat > ./hello_world/main.py << EOF
-# hello.py (Version 1)
+# hello.py (Revised Version 1)
 
 import sys
 
@@ -19,16 +19,21 @@ def main():
         else:
             name = sys.argv[1]
             print(f"Hello, {name}!")
+    elif not sys.stdin.isatty():
+        for line in sys.stdin:
+            name = line.strip()
+            if name:
+                print(f"Hello, {name}!")
     else:
         print_usage()
 
 def print_usage():
     usage = """
 Usage: hello.py [OPTION]... [NAME]
-Prints a greeting message to the user.
+Prints a greeting message to the user. Can also read names from standard input.
 
 Arguments:
-  NAME        the name of the user
+  NAME        the name of the user (optional if using pipe)
 
 Options:
   -h, -?      show this help message and exit
@@ -42,31 +47,14 @@ EOF
 ```
 
 
-## Create hello command using argparser
+## Usage
 
 ```bash
-cd ws
-cd [repository-name]
-cat > ./hello_world/main.py << EOF
-# hello.py (Version 2)
+hello Mikael
 
-import argparse
+echo "Alice" | hello
 
-def main():
-    parser = argparse.ArgumentParser(description='Prints a greeting message to the user.')
-    parser.add_argument('name', nargs='?', help='the name of the user')
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0', help="show program's version number and exit")
-    
-    args = parser.parse_args()
-
-    if args.name:
-        print(f"Hello, {args.name}!")
-    else:
-        parser.print_usage()
-
-if __name__ == "__main__":
-    main()
-EOF
+cat names.txt | hello
 ```
 
 ## Update the hello command
