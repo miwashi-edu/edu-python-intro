@@ -10,30 +10,29 @@
 
 ## Clone
 
-```bash
-cd ~
-git clone https://github.com/miwashi-edu/pentest-toolbox.git # Change to the repository URL you copied in step 4
-cd pentest-toolbox # Adjust to the name you chose in step 3.
+```console
+user@linux:~$ cd ~
+user@linux:~$ git clone https://github.com/miwashi-edu/pentest-toolbox.git # Change to the repository URL you copied in step 4
+user@linux:~$ cd pentest-toolbox # Adjust to the name you chose in step 3.
 
-#python -m venv venv
-#source ./venv/bin/activate # Activate venv
+user@linux:pentest-toolbox$ python -m venv venv
+user@linux:pentest-toolbox$ source ./venv/bin/activate # Activate venv
 
 # Install the project and its dependencies
-#python3 setup.py install
+(venv) user@linux:pentest-toolbox$ python -m build .
+(venv) user@linux:pentest-toolbox$ sudo python -m installer dist/*.whl
 
 # Additional setup steps (if any, based on the project's README)
 
 # Your commands to run the project (based on the project's documentation)
 
-#deactivate # Quit venv when you are ready
+(venv) user@linux:pentest-toolbox$ deactivate # Quit venv when you are ready
 ```
 
 ## Create project scaffold
 
 ```bash
-cd ws
-cd pentest-toolbox
-touch requirements.txt
+cd ~/pentest-toolbox
 echo "# pentest-toolbox" > README.md
 mkdir tests
 touch tests/__init__.py
@@ -53,24 +52,38 @@ git add .
 git commit -m "Initial commit"
 ```
 
-## Create setup.py
+## Create pyproject.toml
 
 ```bash
-cd ws
-cd pentest-toolbox
-cat > setup.py << EOF
-from setuptools import setup, find_packages
+cd ~/pentest-toolbox
+cat > pyproject.toml << EOF
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
-setup(
-    name='pentest-toolbox',
-    version='0.1.0',
-    packages=find_packages(),
-    entry_points={
-        'console_scripts': [
-            'hello=hello_world.main:main',
-        ],
-    },
-)
+[project]
+name = "pentest_toolbox"
+version = "0.1.0"
+description = "A test project"
+authors = [
+    {name = "Anton Hvornum", email = "anton@hvornum.se"},
+]
+license = {text = "AGPL-1.0-or-later"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[project.scripts]
+hello = "hello_world.main:main"
+
+[options]
+package_dir="hello_world"
+include_package_data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hello_world*"]
 EOF
 ```
 
@@ -142,7 +155,7 @@ EOF
 ### Result
 
 ```
-~/ws/pentest-toolbox/
+~/pentest-toolbox/
 │
 ├── hello_world/
 │   ├── __init__.py
@@ -159,25 +172,13 @@ EOF
 │
 ├── .gitignore
 ├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-## Create pip configuration
-
-> It tells pip (acronym for "Pip Installs Packages" or "Pip Installs Python") where our commands will be installed in the system.
-
-```bash
-mkdir -p ~/.pip
-touch ~/.pip/pip.conf
-cat > ~/.pip/pip.conf << 'EOF'
-[install]
-install-option=--prefix=/usr/local
-EOF
+└── pyproject.toml
 ```
 
 ## Install the hello command
 
-```bash
-pip install . --prefix=/usr/local
+```console
+user@linux:~$ cd pentest-toolbox
+user@linux:pentest-toolbox$ python -m build .
+user@linux:pentest-toolbox$ sudo python -m installer --prefix /usr/local dist/*.whl
 ```
